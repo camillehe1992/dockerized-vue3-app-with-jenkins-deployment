@@ -42,3 +42,4 @@ We should be able to access our Vue.js app on http://localhost:8080.
 - https://www.middlewareinventory.com/blog/docker-vuejs/
 - https://devpress.csdn.net/vue/62f0d0c4c6770329307f48f2.html#devmenu8
 - https://eslint.vuejs.org/user-guide/
+- https://docs.docker.com/engine/reference/commandline/push/

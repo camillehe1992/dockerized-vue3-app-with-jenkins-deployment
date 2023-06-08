@@ -21,8 +21,14 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'npm run build'
+        sh 'docker build -t sample-vue-app-with-cicd .'
       }
     }
+    // Comment out this step as we only foucs on build docker image in Jenkins
+    // stage('Push to Artifatory') {
+    //   steps {
+    //     sh 'docker image push --all-tags registry-host:5000/myname/sample-vue-app-with-cicd'
+    //   }
+    // }
   }
 }

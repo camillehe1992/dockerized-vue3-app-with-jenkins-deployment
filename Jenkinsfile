@@ -1,34 +1,50 @@
 pipeline {
   agent any
+  
+  environment {
+    REPOSITORY = "210692783429.dkr.ecr.cn-north-1.amazonaws.com.cn"
+    APP_NAME = "sample-vue-app-with-cicd"
+  }
+  
   stages {
-    stage('Install Dependencies') {
+    stage("Prepare Environemnt") {
       steps {
-        sh 'npm ci'
+        sh """
+          IMAGE_TAG=$(date +%s)
+          echo $IMAGE_TAG >image-tag.txt
+        """
+      }
+    }
+    stage("Install Dependencies") {
+      steps {
+        sh "npm ci"
       }
     }
 
-    stage('Check Linting') {
+    stage("Check Linting") {
       steps {
-        sh 'npm run lint'
+        sh "npm run lint"
       }
     }
 
-    stage('Check unit:test') {
+    stage("Check unit:test") {
       steps {
-        sh 'npm run test:unit'
+        sh "npm run test:unit"
       }
     }
 
-    stage('Build') {
+    stage("Build") {
       steps {
-        sh 'docker build -t sample-vue-app-with-cicd .'
+        sh "docker build -t ${APP_NAME} ."
       }
     }
-    // Comment out this step as we only foucs on build docker image in Jenkins
-    // stage('Push to Artifatory') {
-    //   steps {
-    //     sh 'docker image push --all-tags registry-host:5000/myname/sample-vue-app-with-cicd'
-    //   }
-    // }
+    stage("Push to Artifatory") {
+      steps {
+        withCredentials([aws(credentialsId: 'a8445d82-fccd-4240-b775-fc64ac92852a')]) {
+          sh "aws s3 ls"
+          // sh "./scripts/cicd/push-to-artifactory.sh"
+        }
+      }
+    }
   }
 }

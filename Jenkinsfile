@@ -10,7 +10,7 @@ pipeline {
     stage("Prepare Environemnt") {
       steps {
         script {
-          def timestamps = sh(script: "date +%s", returnStatus: true)
+          def timestamps = sh(script: "echo `date +%s`", returnStdout: true).trim()
           echo "${timestamps}"
           def image_tag = "${timestamps}.${env.BUILD_NUMBER}"
           echo "image_tag: ${image_tag}"
@@ -38,7 +38,10 @@ pipeline {
 
     stage("Build") {
       steps {
-        sh "docker build -t ${env.APP_NAME} ."
+        script {
+          def image_tag = readFile(file: 'image-tag.txt')
+          docker build -t "${env.APP_NAME}:${image_tag}" .
+        }
       }
     }
     // stage("Push to Artifatory") {

@@ -10,8 +10,10 @@ pipeline {
     stage("Prepare Environemnt") {
       steps {
         script {
-          def timestamps = sh(script: "date +%s", returnStatus: true) 
+          def timestamps = sh(script: "date +%s", returnStatus: true)
+          echo "${timestamps}"
           def image_tag = "${timestamps}.${env.BUILD_NUMBER}"
+          echo "image_tag: ${image_tag}"
           writeFile(file: 'image-tag.txt', text: image_tag)
         }
       }

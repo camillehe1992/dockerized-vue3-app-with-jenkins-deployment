@@ -68,6 +68,6 @@ sudo chmod 666 /var/run/docker.sock
 
 # Install Nodejs including npm
 curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
-sudo apt install nodejs -y
+sudo apt install nodejs npm -y
 
 exit

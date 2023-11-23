@@ -27,13 +27,22 @@ npm run test:unit
 
 ```bash
 # build the docker image
-docker build -t sample-vue-app-with-cicd .
+docker build -t camillehe1992/sample-vue-app .
 
 # run the application in a Docker conatainer
-docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 sample-vue-app-with-cicd
+docker run -it -p 8080:8080 --rm --name app1 camillehe1992/sample-vue-app
 ```
 
 We should be able to access our Vue.js app on http://localhost:8080.
+
+## Publish to DockerHub
+```bash
+docker push camillehe1992/sample-vue-app:latest
+```
+
+A screenshot of the application portal shows as below.
+
+![Screenshot](./screenshot.png)
 
 ## References
 

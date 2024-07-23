@@ -33,9 +33,10 @@ docker build -t camillehe1992/sample-vue-app .
 docker run -it -p 8080:8080 --rm --name app1 camillehe1992/sample-vue-app
 ```
 
-We should be able to access our Vue.js app on http://localhost:8080.
+We should be able to access our Vue.js app on <http://localhost:8080>.
 
 ## Publish to DockerHub
+
 ```bash
 docker push camillehe1992/sample-vue-app:latest
 ```
@@ -46,9 +47,9 @@ A screenshot of the application portal shows as below.
 
 ## References
 
-- https://vitejs.dev/guide/
-- https://www.robinwieruch.de/vite-eslint/
-- https://www.middlewareinventory.com/blog/docker-vuejs/
-- https://devpress.csdn.net/vue/62f0d0c4c6770329307f48f2.html#devmenu8
-- https://eslint.vuejs.org/user-guide/
-- https://docs.docker.com/engine/reference/commandline/push/
+- <https://vitejs.dev/guide/>
+- <https://www.robinwieruch.de/vite-eslint/>
+- <https://www.middlewareinventory.com/blog/docker-vuejs/>
+- <https://devpress.csdn.net/vue/62f0d0c4c6770329307f48f2.html#devmenu8>
+- <https://eslint.vuejs.org/user-guide/>
+- <https://docs.docker.com/engine/reference/commandline/push/>
